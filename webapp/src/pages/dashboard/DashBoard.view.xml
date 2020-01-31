@@ -1,0 +1,126 @@
+<core:View
+
+	xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+	height="100%"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="AgendaInvent.src.pages.dashboard.DashBoard">
+
+	<Page
+		backgroundDesign="Transparent"
+		class="sapUiNoContentPadding"
+		showHeader="false"
+		id="dashBoardPage">
+        <content>
+           
+				<layout:Grid
+					defaultSpan="L6 M6 S10"
+				 > 
+					<Panel width="auto" class="sapUi" accessibleRole="Region" >
+						<headerToolbar>
+							<OverflowToolbar height="3rem">
+								<Title text="Adicionar novo Contato"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>	
+							<VBox>
+							<Label text="Nome *" labelFor="nomeInput" class="sapUiSmallMarginTop"/>
+								<Input
+								id="nomeInput"
+								type="Text"
+								placeholder="Digite seu Nome."
+								valueStateText="Nome não pode ser vazio."
+								value="{
+									path : '/nome',
+									type : 'sap.ui.model.type.String',
+									constraints : {
+										minLength: 3,
+										maxLength: 30
+									}
+								}"
+								change= "onChange"/>
+							<Label text="E-Mail *" labelFor="emailInput" class="sapUiSmallMarginTop"/>
+								<Input
+									id="emailInput"
+									type="Email"
+									placeholder="Digite seu E-mail."
+									valueStateText="Insira um endereço de E-mail válido."
+									value="{
+										path : '/email',
+										type : '.customEmailType'
+										}"/>
+						
+							<Label text="Endereço" class="sapUiSmallMarginTop"/>
+								<Input
+									id="enderecoInput"
+									type="Text"
+									placeholder="Digite seu Endereço."
+									valueStateText="Insira um endereço com Cidade e Estado."
+									value="{
+										path : '/endereco',
+										type : 'sap.ui.model.type.String',
+										constraints : {
+										minLength: 0,
+										maxLength: 120
+									}
+
+									}"/>
+						
+							<Label text="Telefone *" class="sapUiSmallMarginTop"/>	
+								<MaskInput id="telefoneInput" class="" 
+								tooltip="Numero de Celular"
+								textAlign="Begin"
+								 mask="(99) 99999-9999" placeholderSymbol="_" placeholder="(00) 12345-6789"
+								 valueStateText="Numero de Telefone não pode ser vazio."
+								 value="{ path : '/telefone',
+								 		  type : 'sap.ui.model.type.String',
+										   constraints : {
+											   minLength: 15
+										   }
+									 }"/>						
+							<HBox width="100%" justifyContent="End">
+								<Button class="" 
+									text="Salvar"
+									press="onSave"/>
+							</HBox>
+							</VBox>
+								
+						</content>
+						</Panel>
+				
+
+					<List mode="Delete" delete="onPressDelete" 
+						items="{path: 'contatos>/'}" >
+						<headerToolbar>
+								<OverflowToolbar>
+									<Title
+										text="Contatos" />
+									<ToolbarSpacer />
+									<OverflowToolbarButton
+										icon="sap-icon://synchronize"
+										type="Transparent"
+										tooltip="Clique para atualizar os Contatos"
+										press="onPressReload"/>
+								</OverflowToolbar>
+						</headerToolbar>
+						<CustomListItem press="">
+							<HBox>
+							<core:Icon size="2rem" src="sap-icon://attachment-photo" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+								<VBox class="sapUiResponsiveMargin" >
+								<Label text="{contatos>nome}" />
+								<Label text="{contatos>telefone}"/>
+								<Text text="{contatos>endereco}"/>
+								<Text text="{contatos>email}"/>
+								</VBox>
+							</HBox>
+						</CustomListItem>
+					</List>
+				
+				</layout:Grid>
+               
+   
+	   	
+		    </content>
+	</Page>
+</core:View>

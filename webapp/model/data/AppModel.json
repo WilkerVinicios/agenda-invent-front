@@ -1,0 +1,18 @@
+{
+  "navigation": [
+    {
+      "title": "Commom.Home",
+      "icon": "sap-icon://bbyd-dashboard",
+      "expanded": true,
+      "key": "dashBoard"
+    }
+  ],
+  "fixedNavigation": [
+    {
+      "title": "Commom.Settings",
+      "icon": "sap-icon://settings",
+      "key": "settings"
+    }
+  ],
+  "headerItems": []
+}
